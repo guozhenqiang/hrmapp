@@ -1,6 +1,7 @@
 package org.fkit.hrm.controller;
 
 import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.fkit.hrm.domain.User;
 import org.fkit.hrm.service.HrmService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,8 +26,9 @@ public class UserController {
 	/**
 	 * 自动注入UserService
 	 * */
-	@Autowired
-	@Qualifier("hrmService")
+//	@Autowired
+//	@Qualifier("hrmService")
+	@Resource
 	private HrmService hrmService;
 		
 	/**
@@ -34,7 +37,7 @@ public class UserController {
 	 * @param String password 密码
 	 * @return 跳转的视图
 	 * */
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	 public ModelAndView login(@RequestParam("loginname") String loginname,
 			 @RequestParam("password") String password,
 			 HttpSession session,
